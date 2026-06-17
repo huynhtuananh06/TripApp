@@ -1,0 +1,78 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_cinematic">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <!-- AVATAR -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/ic_user" />
+
+            <ImageView
+                android:id="@+id/btnEditAvatar"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="bottom|end"
+                android:src="@android:drawable/ic_input_add"/>
+        </FrameLayout>
+
+        <!-- NAME -->
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <!-- EMAIL -->
+        <TextView
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
+
+        <!-- ORDERS TITLE -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📦 Tất cả đơn hàng"
+            android:textStyle="bold"
+            android:padding="10dp"/>
+
+        <!-- RECYCLER -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerBookedTours"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <!-- SETTINGS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/btnLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🚪 Đăng xuất"
+                android:padding="10dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

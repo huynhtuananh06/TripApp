@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+
+    android:gravity="center"
+
+    android:padding="30dp"
+
+    android:background="@drawable/bg_cinematic">
+
+    <TextView
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Chào mừng đến Trip App"
+
+        android:textSize="24sp"
+
+        android:textStyle="bold"
+
+        android:layout_marginBottom="40dp"/>
+
+
+    <EditText
+
+        android:id="@+id/edtUser"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="55dp"
+
+        android:hint="Tên đăng nhập"
+
+        android:background="@drawable/edit_bg"
+
+        android:padding="15dp"/>
+
+
+    <EditText
+
+        android:id="@+id/edtPass"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="55dp"
+
+        android:hint="Mật khẩu"
+
+        android:inputType="textPassword"
+
+        android:layout_marginTop="20dp"
+
+        android:background="@drawable/edit_bg"
+
+        android:padding="15dp"/>
+
+
+    <Button
+
+        android:id="@+id/btnLogin"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="55dp"
+
+        android:text="Đăng nhập"
+
+        android:layout_marginTop="30dp"
+
+        android:backgroundTint="#4DA8FF"/>
+
+
+    <TextView
+
+        android:id="@+id/txtRegister"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Chưa có tài khoản? Đăng ký tại đây"
+
+        android:textColor="#FFFFFF"
+
+        android:layout_marginTop="25dp"/>
+
+</LinearLayout>
