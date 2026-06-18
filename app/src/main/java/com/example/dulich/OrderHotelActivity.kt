@@ -50,7 +50,8 @@ class OrderHotelActivity : AppCompatActivity() {
                                 hotelName = doc.getString("hotelName") ?: "",
                                 price = doc.getDouble("price") ?: 0.0,
                                 rating = doc.get("rating")?.toString() ?: "",
-                                quantity = doc.getDouble("quantity") ?: 1.0
+                                quantity = doc.getDouble("quantity") ?: 1.0,
+                                checkIn = doc.getString("checkIn") ?: ""
                             )
                         )
                     }

@@ -37,6 +37,7 @@ class OrderAdapter(
             view.findViewById<TextView>(
                 R.id.txtStatus
             )
+        val txtCheckIn = view.findViewById<TextView>(R.id.txtCheckIn)
         val quantity = view.findViewById<TextView>(R.id.txtQuantity)
         val btnPlus = view.findViewById<View>(R.id.btnPlus)
         val btnMinus = view.findViewById<View>(R.id.btnMinus)
@@ -72,6 +73,7 @@ class OrderAdapter(
         holder.name.text = item.hotelName
 
         holder.rating.text = "⭐ ${item.rating}"
+        holder.txtCheckIn.text = "Check-in: ${item.checkIn}"
 
         holder.quantity.text = item.quantity.toString()
 
