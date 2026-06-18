@@ -30,6 +30,7 @@ class OrderHotelActivity : AppCompatActivity() {
         val adapter = OrderAdapter(orderList) {}
         recycler.adapter = adapter
 
+
         val user = auth.currentUser
 
         if (user != null) {
@@ -47,11 +48,9 @@ class OrderHotelActivity : AppCompatActivity() {
                         orderList.add(
                             Order(
                                 hotelName = doc.getString("hotelName") ?: "",
-
-                                // 🔥 FIX LỖI Ở ĐÂY
-                                price = doc.get("price")?.toString() ?: "0",
-
-                                rating = doc.get("rating")?.toString() ?: ""
+                                price = doc.getDouble("price") ?: 0.0,
+                                rating = doc.get("rating")?.toString() ?: "",
+                                quantity = doc.getDouble("quantity") ?: 1.0
                             )
                         )
                     }
@@ -59,6 +58,8 @@ class OrderHotelActivity : AppCompatActivity() {
                     adapter.notifyDataSetChanged()
                 }
         }
+
+
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
 

@@ -34,7 +34,7 @@
             android:textColor="#4DA8FF"
             android:textStyle="bold"
             android:layout_marginTop="6dp"
-            android:textSize="14sp" />
+            android:textSize="20sp" />
 
         <!-- RATING -->
         <TextView
@@ -68,13 +68,13 @@
                 android:id="@+id/btnPlus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+"/>
+                android:text="Thêm vé"/>
 
             <Button
                 android:id="@+id/btnMinus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-"/>
+                android:text="Giảm vé"/>
 
             <Button
                 android:id="@+id/btnDelete"
