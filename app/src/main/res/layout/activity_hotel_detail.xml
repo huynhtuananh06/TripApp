@@ -271,17 +271,7 @@
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
-                    <TextView
-                        android:id="@+id/txtCheckIn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"/>
 
-                    <TextView
-                        android:id="@+id/txtCheckOut"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"/>
 
                 </LinearLayout>
 

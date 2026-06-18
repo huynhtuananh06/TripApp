@@ -46,8 +46,6 @@ class HotelDetailActivity : AppCompatActivity() {
         val txtFacility2 = findViewById<TextView>(R.id.txtFacility2)
         val txtFacility3 = findViewById<TextView>(R.id.txtFacility3)
 
-        val txtCheckIn = findViewById<TextView>(R.id.txtCheckIn)
-        val txtCheckOut = findViewById<TextView>(R.id.txtCheckOut)
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
 
         //==========================
@@ -76,8 +74,7 @@ class HotelDetailActivity : AppCompatActivity() {
         txtFacility2.text = "✔ ${hotel.facility2}"
         txtFacility3.text = "✔ ${hotel.facility3}"
 
-        txtCheckIn.text = "🕑 Check-in: 14:00"
-        txtCheckOut.text = "🕛 Check-out: 12:00"
+
 
         txtNear1.text = "📍 ${hotel.near1}"
         txtNear2.text = "📍 ${hotel.near2}"
@@ -86,9 +83,7 @@ class HotelDetailActivity : AppCompatActivity() {
         txtFacility1.text = "✓ ${hotel.facility1}"
         txtFacility2.text = "✓ ${hotel.facility2}"
         txtFacility3.text = "✓ ${hotel.facility3}"
-        txtCheckIn.text = "🕑 Check-in: 14:00"
 
-        txtCheckOut.text = "🕛 Check-out: 12:00"
 
         //==========================
         // Quay lại

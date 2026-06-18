@@ -101,24 +101,57 @@ class TripActivity : AppCompatActivity() {
                     return@TripAdapter
                 }
 
-                val order = hashMapOf(
-                    "userId" to user.uid,
-                    "hotelName" to item.name,
-                    "price" to item.price,
-                    "rating" to item.rating,
-                    "status" to "pending",
-                    "quantity" to 1
+                // 1. Chọn ngày
+                val calendar = java.util.Calendar.getInstance()
+
+                val datePicker = android.app.DatePickerDialog(
+                    this,
+                    { _, year, month, dayOfMonth ->
+
+                        // 2. Sau khi chọn ngày → chọn giờ
+                        val timePicker = android.app.TimePickerDialog(
+                            this,
+                            { _, hourOfDay, minute ->
+
+                                val checkInDateTime =
+                                    "$dayOfMonth/${month + 1}/$year $hourOfDay:$minute"
+
+                                // 3. Gửi Firebase sau khi chọn xong
+                                val order = hashMapOf(
+                                    "userId" to user.uid,
+                                    "hotelName" to item.name,
+                                    "price" to item.price,
+                                    "rating" to item.rating,
+                                    "status" to "pending",
+                                    "quantity" to 1,
+                                    "checkIn" to checkInDateTime   // 👈 thêm ngày giờ
+                                )
+
+                                db.collection("orders")
+                                    .add(order)
+                                    .addOnSuccessListener {
+                                        Toast.makeText(this, "Đặt thành công", Toast.LENGTH_SHORT).show()
+                                    }
+                                    .addOnFailureListener {
+                                        Toast.makeText(this, "Lỗi: ${it.message}", Toast.LENGTH_LONG).show()
+                                        Log.e("FIREBASE", it.message.toString())
+                                    }
+
+                            },
+                            calendar.get(java.util.Calendar.HOUR_OF_DAY),
+                            calendar.get(java.util.Calendar.MINUTE),
+                            true
+                        )
+
+                        timePicker.show()
+
+                    },
+                    calendar.get(java.util.Calendar.YEAR),
+                    calendar.get(java.util.Calendar.MONTH),
+                    calendar.get(java.util.Calendar.DAY_OF_MONTH)
                 )
 
-                db.collection("orders")
-                    .add(order)
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Đặt thành công", Toast.LENGTH_SHORT).show()
-                    }
-                    .addOnFailureListener {
-                        Toast.makeText(this, "Lỗi: ${it.message}", Toast.LENGTH_LONG).show()
-                        Log.e("FIREBASE", it.message.toString())
-                    }
+                datePicker.show()
             },
             onDetail = { item ->
 
