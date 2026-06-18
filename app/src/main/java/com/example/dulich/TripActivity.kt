@@ -116,7 +116,15 @@ class TripActivity : AppCompatActivity() {
                                 val checkInDateTime =
                                     "$dayOfMonth/${month + 1}/$year $hourOfDay:$minute"
 
-                                // 3. Gửi Firebase sau khi chọn xong
+// 👉 MỞ PAYMENT SCREEN LUÔN
+                                val intent = Intent(this, PaymentMethodActivity::class.java)
+
+                                intent.putExtra("hotelName", item.name)
+                                intent.putExtra("price", item.price)
+                                intent.putExtra("rating", item.rating)
+                                intent.putExtra("checkIn", checkInDateTime)
+
+                                startActivity(intent)
                                 val order = hashMapOf(
                                     "userEmail" to user.email,
                                     "userEmail" to (user.email ?: ""),
@@ -128,6 +136,7 @@ class TripActivity : AppCompatActivity() {
                                     "quantity" to 1,
                                     "checkIn" to checkInDateTime   // 👈 thêm ngày giờ
                                 )
+
 
                                 db.collection("orders")
                                     .add(order)

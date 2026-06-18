@@ -8,4 +8,5 @@ data class Order(
     var quantity: Double = 1.0,
     val status: String = "pending",
     val checkIn: String = ""
+
 )

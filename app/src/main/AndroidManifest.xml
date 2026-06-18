@@ -38,6 +38,8 @@
             android:name=".PendingOrdersActivity"/>
         <activity
             android:name=".HotelDetailActivity"/>
+        <activity
+            android:name=".PaymentMethodActivity"/>
 
 
         <activity
