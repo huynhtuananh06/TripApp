@@ -126,13 +126,25 @@ class ProfileActivity : AppCompatActivity() {
                 R.id.bottomNav
             )
         bottomNav.selectedItemId =
-            R.id.nav_trip
+            R.id.nav_profile
 
         bottomNav.setOnItemSelectedListener {
 
             when(it.itemId){
 
-                R.id.nav_home -> true
+                R.id.nav_home -> {
+
+                    startActivity(
+                        Intent(
+                            this,
+                            HomeActivity::class.java
+                        )
+                    )
+
+                    finish() // tùy chọn
+
+                    true
+                }
 
                 R.id.nav_suggest -> {
 
@@ -142,6 +154,8 @@ class ProfileActivity : AppCompatActivity() {
                             SuggestActivity::class.java
                         )
                     )
+
+                    finish()
 
                     true
                 }
@@ -155,6 +169,8 @@ class ProfileActivity : AppCompatActivity() {
                         )
                     )
 
+                    finish()
+
                     true
                 }
 
@@ -166,6 +182,8 @@ class ProfileActivity : AppCompatActivity() {
                             ProfileActivity::class.java
                         )
                     )
+
+                    finish()
 
                     true
                 }
