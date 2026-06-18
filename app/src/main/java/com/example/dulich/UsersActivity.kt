@@ -1,6 +1,7 @@
 package com.example.dulich
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.google.firebase.auth.FirebaseAuth
 import org.json.JSONObject
 
 class UsersActivity : AppCompatActivity() {
@@ -29,6 +31,7 @@ class UsersActivity : AppCompatActivity() {
             finish()
         }
 
+
         val recyclerView = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -36,7 +39,10 @@ class UsersActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         loadUsers()
+
+
     }
+
 
     private fun loadUsers() {
 

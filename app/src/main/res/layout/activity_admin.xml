@@ -195,14 +195,16 @@
 
     </LinearLayout>
 
+
     <!-- BUTTON OPEN ORDERS -->
     <Button
-        android:id="@+id/btnOrders"
+        android:id="@+id/btnLogout"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:text="Quản lý đơn hàng"
+        android:text="Đăng xuất"
+        android:textStyle="bold"
         android:textColor="#FFFFFF"
-        android:backgroundTint="#4DA8FF"
+        android:backgroundTint="#E53935"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
