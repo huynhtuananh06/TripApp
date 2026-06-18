@@ -57,20 +57,19 @@ class LoginActivity :
 
             auth.signInWithEmailAndPassword(
 
-                edtUser.text.toString(),
+                edtUser.text.toString().trim(),
+                edtPass.text.toString().trim()
 
-                edtPass.text.toString()
+            ).addOnCompleteListener { task ->
 
-            )
-
-                .addOnSuccessListener {
+                if (task.isSuccessful) {
 
                     val user = auth.currentUser
                     val email = user?.email
 
                     user?.reload()?.addOnCompleteListener {
 
-                        // 🔥 ADMIN KHÔNG CẦN VERIFY
+                        // ADMIN
                         if (email == "admin@gmail.com") {
 
                             startActivity(
@@ -80,7 +79,7 @@ class LoginActivity :
 
                         } else {
 
-                            // 👤 USER MỚI CẦN VERIFY
+                            // USER
                             if (user?.isEmailVerified == true) {
 
                                 startActivity(
@@ -95,24 +94,39 @@ class LoginActivity :
                                     "Hãy xác thực Gmail trước",
                                     Toast.LENGTH_LONG
                                 ).show()
+
+                                auth.signOut()
                             }
+
                         }
+
                     }
+
+                } else {
+
+                    val message = task.exception?.message ?: ""
+
+                    if (message.contains("user has been disabled", true)) {
+
+                        Toast.makeText(
+                            this,
+                            "Tài khoản đã bị khóa.",
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                    } else {
+
+                        Toast.makeText(
+                            this,
+                            "Sai email hoặc mật khẩu.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    }
+
                 }
 
-                .addOnFailureListener {
-
-                    Toast.makeText(
-
-                        this,
-
-                        "Sai email hoặc mật khẩu",
-
-                        Toast.LENGTH_SHORT
-
-                    ).show()
-
-                }
+            }
 
         }
 

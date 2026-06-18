@@ -1,8 +1,9 @@
 package com.example.dulich
 
 data class UserModel(
-    val email: String = "",
-    val createdAt: String = "",
-    val lastLogin: String = "",
-    val disabled: Boolean = false
+    val uid: String,
+    val email: String,
+    val createdAt: String,
+    val lastLogin: String,
+    var disabled: Boolean
 )

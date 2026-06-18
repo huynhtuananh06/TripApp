@@ -1,7 +1,10 @@
 package com.example.dulich
 
+
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.RequestQueue
@@ -15,8 +18,16 @@ class UsersActivity : AppCompatActivity() {
     private lateinit var adapter: UserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_users)
+        val btnBack = findViewById<Button>(R.id.btnBack)
+
+        btnBack.setOnClickListener {
+            finish()
+        }
 
         val recyclerView = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -43,6 +54,7 @@ class UsersActivity : AppCompatActivity() {
 
                     list.add(
                         UserModel(
+                            obj.getString("uid"),
                             obj.getString("email"),
                             obj.getString("createdAt"),
                             obj.getString("lastLogin"),
