@@ -34,6 +34,11 @@
             android:name=".AdminActivity"/>
         <activity
             android:name=".UsersActivity"/>
+        <activity
+            android:name=".PendingOrdersActivity"/>
+        <activity
+            android:name=".HotelDetailActivity"/>
+
 
         <activity
             android:name=".LoginActivity"

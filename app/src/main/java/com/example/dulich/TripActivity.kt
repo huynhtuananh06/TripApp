@@ -120,7 +120,18 @@ class TripActivity : AppCompatActivity() {
                         Log.e("FIREBASE", it.message.toString())
                     }
             },
-            onDetail = { }
+            onDetail = { item ->
+
+                val intent = Intent(this, HotelDetailActivity::class.java)
+
+                intent.putExtra("hotelName", item.name)
+                intent.putExtra("hotelImage", item.image)
+                intent.putExtra("hotelPrice", item.price)
+                intent.putExtra("hotelRating", item.rating)
+
+                startActivity(intent)
+
+            }
         )
         val bottomNav =
             findViewById<BottomNavigationView>(

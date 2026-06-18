@@ -123,6 +123,37 @@ class SuggestActivity : AppCompatActivity() {
                             "Du khách có thể ngắm toàn cảnh Đà Nẵng từ trên cao và khám phá hệ sinh thái đa dạng."
 
                 }
+                "Hà Nội" -> {
+
+                    showAll()
+
+                    intro.text = "Hà Nội là thủ đô ngàn năm văn hiến của Việt Nam, nổi tiếng với các di tích lịch sử, văn hóa lâu đời cùng nét đẹp cổ kính và nền ẩm thực đặc sắc."
+
+                    // Hồ Hoàn Kiếm
+                    img1.setImageResource(R.drawable.hoguom)
+                    name1.text = "Hồ Hoàn Kiếm"
+                    des1.text =
+                        "Hồ Hoàn Kiếm (Hồ Gươm) là biểu tượng nổi tiếng của Thủ đô Hà Nội, gắn liền với truyền thuyết vua Lê Lợi trả gươm báu cho Rùa thần. " +
+                                "Giữa hồ có Tháp Rùa cổ kính, xung quanh là cầu Thê Húc, đền Ngọc Sơn và khu phố đi bộ sôi động vào mỗi cuối tuần. " +
+                                "Đây là điểm tham quan không thể bỏ qua khi đến Hà Nội."
+
+                    // Văn Miếu
+                    img2.setImageResource(R.drawable.vanmieu)
+                    name2.text = "Văn Miếu - Quốc Tử Giám"
+                    des2.text =
+                        "Văn Miếu - Quốc Tử Giám được xây dựng từ năm 1070, là trường đại học đầu tiên của Việt Nam. " +
+                                "Nơi đây thờ Khổng Tử và các bậc hiền triết, đồng thời lưu giữ 82 bia Tiến sĩ được UNESCO công nhận là Di sản tư liệu thế giới. " +
+                                "Đây là điểm đến mang đậm giá trị lịch sử và truyền thống hiếu học."
+
+                    // Phố Cổ Hà Nội
+                    img3.setImageResource(R.drawable.phoco)
+                    name3.text = "Phố Cổ Hà Nội"
+                    des3.text =
+                        "Phố Cổ Hà Nội nổi tiếng với khu vực '36 phố phường', nơi vẫn lưu giữ nét kiến trúc cổ kính và văn hóa truyền thống của người Hà Nội. " +
+                                "Du khách có thể dạo bộ, thưởng thức các món ăn đặc sản như phở, bún chả, cà phê trứng và mua sắm các mặt hàng thủ công mỹ nghệ. " +
+                                "Đây là địa điểm lý tưởng để khám phá nhịp sống và vẻ đẹp của Hà Nội xưa."
+                }
+
             }
         }
         val bottomNav =

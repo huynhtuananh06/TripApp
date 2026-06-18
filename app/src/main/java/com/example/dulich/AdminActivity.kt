@@ -17,9 +17,11 @@ class AdminActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin)
-
+        // CARD PENDING
+        val cardPending = findViewById<CardView>(R.id.cardPending)
         // CARD USERS
         val cardUsers = findViewById<CardView?>(R.id.cardUsers)
+
         val btnLogout = findViewById<Button>(R.id.btnLogout)
         btnLogout.setOnClickListener {
 
@@ -34,6 +36,13 @@ class AdminActivity : AppCompatActivity() {
             startActivity(intent)
 
             finish()
+
+        }
+        cardPending.setOnClickListener {
+
+            startActivity(
+                Intent(this, PendingOrdersActivity::class.java)
+            )
 
         }
 
