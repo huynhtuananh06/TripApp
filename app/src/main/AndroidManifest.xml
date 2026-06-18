@@ -32,6 +32,8 @@
             android:name=".OrderHotelActivity"/>
         <activity
             android:name=".AdminActivity"/>
+        <activity
+            android:name=".UsersActivity"/>
 
         <activity
             android:name=".LoginActivity"
