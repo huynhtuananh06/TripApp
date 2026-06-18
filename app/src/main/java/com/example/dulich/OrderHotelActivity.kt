@@ -51,7 +51,9 @@ class OrderHotelActivity : AppCompatActivity() {
                                 price = doc.getDouble("price") ?: 0.0,
                                 rating = doc.get("rating")?.toString() ?: "",
                                 quantity = doc.getDouble("quantity") ?: 1.0,
-                                checkIn = doc.getString("checkIn") ?: ""
+                                checkIn = doc.getString("checkIn") ?: "",
+                                status = doc.getString("status") ?: "pending"
+
                             )
                         )
                     }
@@ -91,5 +93,6 @@ class OrderHotelActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
     }
 }

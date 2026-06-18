@@ -118,6 +118,7 @@ class TripActivity : AppCompatActivity() {
 
                                 // 3. Gửi Firebase sau khi chọn xong
                                 val order = hashMapOf(
+                                    "userEmail" to user.email,
                                     "userId" to user.uid,
                                     "hotelName" to item.name,
                                     "price" to item.price,
