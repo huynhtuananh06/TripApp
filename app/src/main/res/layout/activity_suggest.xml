@@ -128,6 +128,7 @@
                             android:id="@+id/buy1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:backgroundTint="#4DA8FF"
                             android:text="Các khách sạn gần đây"/>
                     </LinearLayout>
 

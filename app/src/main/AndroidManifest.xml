@@ -30,6 +30,8 @@
             android:name=".OrderDetailActivity"/>
         <activity
             android:name=".OrderHotelActivity"/>
+        <activity
+            android:name=".AdminActivity"/>
 
         <activity
             android:name=".LoginActivity"

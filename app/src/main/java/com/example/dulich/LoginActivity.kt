@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import kotlin.jvm.java
 
 class LoginActivity :
     AppCompatActivity() {
@@ -64,48 +65,39 @@ class LoginActivity :
 
                 .addOnSuccessListener {
 
-                    val user =
-                        auth.currentUser
+                    val user = auth.currentUser
+                    val email = user?.email
 
-                    user?.reload()
+                    user?.reload()?.addOnCompleteListener {
 
-                    user?.reload()
-                        ?.addOnCompleteListener {
+                        // 🔥 ADMIN KHÔNG CẦN VERIFY
+                        if (email == "admin@gmail.com") {
 
-                            if(
-                                user?.isEmailVerified
-                                == true
-                            ){
+                            startActivity(
+                                Intent(this, AdminActivity::class.java)
+                            )
+                            finish()
+
+                        } else {
+
+                            // 👤 USER MỚI CẦN VERIFY
+                            if (user?.isEmailVerified == true) {
 
                                 startActivity(
-
-                                    Intent(
-                                        this,
-                                        HomeActivity::class.java
-                                    )
-
+                                    Intent(this, HomeActivity::class.java)
                                 )
-
                                 finish()
 
-                            }
-
-                            else{
+                            } else {
 
                                 Toast.makeText(
-
                                     this,
-
                                     "Hãy xác thực Gmail trước",
-
                                     Toast.LENGTH_LONG
-
                                 ).show()
-
                             }
-
                         }
-
+                    }
                 }
 
                 .addOnFailureListener {

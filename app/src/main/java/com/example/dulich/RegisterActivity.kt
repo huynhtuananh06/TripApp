@@ -47,6 +47,7 @@ class RegisterActivity :
             findViewById<Button>(
                 R.id.btnRegister
             )
+        val blockedAdminEmail = "admin@gmail.com"
 
         btnRegister.setOnClickListener {
 
