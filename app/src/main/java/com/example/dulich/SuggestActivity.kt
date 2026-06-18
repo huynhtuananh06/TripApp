@@ -1,14 +1,19 @@
 package com.example.dulich
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SuggestActivity : AppCompatActivity() {
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.statusBarColor = Color.parseColor("#4DA8FF")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_suggest)
 
@@ -118,6 +123,76 @@ class SuggestActivity : AppCompatActivity() {
                             "Du khách có thể ngắm toàn cảnh Đà Nẵng từ trên cao và khám phá hệ sinh thái đa dạng."
 
                 }
+            }
+        }
+        val bottomNav =
+            findViewById<BottomNavigationView>(
+                R.id.bottomNav
+            )
+        bottomNav.selectedItemId =
+            R.id.nav_suggest
+
+        bottomNav.setOnItemSelectedListener {
+
+            when(it.itemId){
+
+                R.id.nav_home -> {
+
+                    startActivity(
+                        Intent(
+                            this,
+                            HomeActivity::class.java
+                        )
+                    )
+
+                    finish() // tùy chọn
+
+                    true
+                }
+
+                R.id.nav_suggest -> {
+
+                    startActivity(
+                        Intent(
+                            this,
+                            SuggestActivity::class.java
+                        )
+                    )
+
+                    finish()
+
+                    true
+                }
+
+                R.id.nav_trip -> {
+
+                    startActivity(
+                        Intent(
+                            this,
+                            TripActivity::class.java
+                        )
+                    )
+
+                    finish()
+
+                    true
+                }
+
+                R.id.nav_profile -> {
+
+                    startActivity(
+                        Intent(
+                            this,
+                            ProfileActivity::class.java
+                        )
+                    )
+
+                    finish()
+
+                    true
+                }
+
+                else -> false
             }
         }
     }

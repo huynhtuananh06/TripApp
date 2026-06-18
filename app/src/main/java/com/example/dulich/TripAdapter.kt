@@ -92,7 +92,7 @@ class TripAdapter(
 
             name.text = item.name
             rating.text = "⭐ ${item.rating}"
-            price.text = item.price
+            price.text = "${item.price} VNĐ"
             img.setImageResource(item.image)
 
             btnBook.setOnClickListener {
