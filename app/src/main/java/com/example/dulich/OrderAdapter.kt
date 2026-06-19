@@ -63,9 +63,19 @@ class OrderAdapter(
 
         // ================= BACKGROUND =================
         holder.itemView.setBackgroundColor(
-            when (item.status) {
-                "paid" -> Color.parseColor("#D4F8D4")
-                else -> Color.WHITE
+            when (item.bookingStatus) {
+
+                "Đã từ chối" ->
+                    Color.parseColor("#FFCDD2")   // đỏ nhạt
+
+                "Đã hết hạn" ->
+                    Color.parseColor("#FFE0B2")   // cam nhạt
+
+                "Đã xác nhận" ->
+                    Color.parseColor("#D4F8D4")   // xanh lá
+
+                else ->
+                    Color.WHITE
             }
         )
 
