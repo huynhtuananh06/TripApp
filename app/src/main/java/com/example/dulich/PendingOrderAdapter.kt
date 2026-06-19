@@ -41,28 +41,28 @@ class PendingOrderAdapter(
         holder.hotel.text = item.hotelName
         holder.price.text = "Giá: ${item.price}"
         holder.checkIn.text = "Check-in: ${item.checkIn}"
-        holder.txtStatus.text = when (item.status) {
-
-            "pending" -> "⏳ Chờ duyệt"
-
-            "paid" -> "💰 Đã thanh toán"
-
-            "confirmed" -> "✅ Đã xác nhận"
-
-            "rejected" -> "❌ Từ chối"
-
-            else -> "❓ Không rõ"
-        }
+        holder.txtStatus.text =
+            "💳 Thanh toán: ${
+                if (item.status == "paid")
+                    "Đã thanh toán"
+                else
+                    "Chưa thanh toán"
+            }\n📋 Đặt phòng: ${item.bookingStatus}"
 
         // 🎨 màu theo status
-        when (item.status) {
-            "confirmed" -> holder.itemView.setBackgroundColor(Color.parseColor("#D4F8D4"))
-            "rejected" -> holder.itemView.setBackgroundColor(Color.parseColor("#FFD6D6"))
-            else -> holder.itemView.setBackgroundColor(Color.WHITE)
+        when (item.bookingStatus) {
+            "Đã xác nhận" ->
+                holder.itemView.setBackgroundColor(Color.parseColor("#D4F8D4"))
+
+            "Đã từ chối" ->
+                holder.itemView.setBackgroundColor(Color.parseColor("#FFD6D6"))
+
+            else ->
+                holder.itemView.setBackgroundColor(Color.WHITE)
         }
 
         // 🧠 disable nếu đã xử lý
-        val isPending = item.status == "pending"
+        val isPending = item.bookingStatus == "Chờ xác nhận"
         holder.btnConfirm.isEnabled = isPending
         holder.btnReject.isEnabled = isPending
 
