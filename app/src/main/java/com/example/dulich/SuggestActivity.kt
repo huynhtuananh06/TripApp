@@ -137,7 +137,9 @@ class SuggestActivity : AppCompatActivity() {
                         btn.performClick()
                     }
                 }
+
             }
+
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
@@ -164,18 +166,42 @@ class SuggestActivity : AppCompatActivity() {
                     des1.text = "Cầu Rồng là biểu tượng nổi bật của thành phố Đà Nẵng, bắc qua sông Hàn với thiết kế hình rồng vàng độc đáo.\n" +
                             "Cây cầu có khả năng phun lửa và phun nước vào cuối tuần, thu hút rất nhiều du khách tham quan.\n" +
                             "Đây là địa điểm check-in nổi tiếng và là niềm tự hào của người dân Đà Nẵng."
+                    buy1.text = "🏨 Khách sạn gần đây"
+                    buy1.setOnClickListener {
+
+                        val intent = Intent(this, TripActivity::class.java)
+                        intent.putExtra("place", "Cầu Rồng")
+                        startActivity(intent)
+
+                    }
 
                     img2.setImageResource(R.drawable.banahill)
                     name2.text = "Bà Nà Hills"
                     des2.text = "Bà Nà Hills là khu du lịch nổi tiếng nằm trên đỉnh núi thuộc Đà Nẵng, được mệnh danh là 'châu Âu thu nhỏ'.\n" +
                             "Nơi đây có Cầu Vàng nổi tiếng với bàn tay khổng lồ nâng đỡ, cùng khí hậu mát mẻ quanh năm.\n" +
                             "Du khách có thể trải nghiệm cáp treo dài nhất thế giới, khu làng Pháp và nhiều trò chơi giải trí hấp dẫn."
+                    buy2.text = "🏨 Khách sạn gần đây"
+                    buy2.setOnClickListener {
+
+                        val intent = Intent(this, TripActivity::class.java)
+                        intent.putExtra("place", "Bà Nà Hills")
+                        startActivity(intent)
+
+                    }
 
                     img3.setImageResource(R.drawable.sontra)
                     name3.text = "Bán đảo Sơn Trà"
                     des3.text = "Bán đảo Sơn Trà là khu bảo tồn thiên nhiên nổi tiếng của Đà Nẵng, được ví như lá phổi xanh của thành phố.\n" +
                             "Nơi đây có rừng nguyên sinh, đường ven biển tuyệt đẹp và chùa Linh Ứng với tượng Phật Bà cao nhất Việt Nam.\n" +
                             "Du khách có thể ngắm toàn cảnh Đà Nẵng từ trên cao và khám phá hệ sinh thái đa dạng."
+                    buy3.text = "🏨 Khách sạn gần đây"
+                    buy3.setOnClickListener {
+
+                        val intent = Intent(this, TripActivity::class.java)
+                        intent.putExtra("place", "Sơn Trà")
+                        startActivity(intent)
+
+                    }
 
                 }
                 "Hà Nội" -> {
@@ -191,6 +217,13 @@ class SuggestActivity : AppCompatActivity() {
                         "Hồ Hoàn Kiếm (Hồ Gươm) là biểu tượng nổi tiếng của Thủ đô Hà Nội, gắn liền với truyền thuyết vua Lê Lợi trả gươm báu cho Rùa thần. " +
                                 "Giữa hồ có Tháp Rùa cổ kính, xung quanh là cầu Thê Húc, đền Ngọc Sơn và khu phố đi bộ sôi động vào mỗi cuối tuần. " +
                                 "Đây là điểm tham quan không thể bỏ qua khi đến Hà Nội."
+                    buy1.text = "🏨 Khách sạn gần đây"
+                    buy1.setOnClickListener {
+                        val intent = Intent(this, TripActivity::class.java)
+                        intent.putExtra("place", "Hồ Hoàn Kiếm")
+                        startActivity(intent)
+                    }
+
 
                     // Văn Miếu
                     img2.setImageResource(R.drawable.vanmieu)
@@ -199,6 +232,12 @@ class SuggestActivity : AppCompatActivity() {
                         "Văn Miếu - Quốc Tử Giám được xây dựng từ năm 1070, là trường đại học đầu tiên của Việt Nam. " +
                                 "Nơi đây thờ Khổng Tử và các bậc hiền triết, đồng thời lưu giữ 82 bia Tiến sĩ được UNESCO công nhận là Di sản tư liệu thế giới. " +
                                 "Đây là điểm đến mang đậm giá trị lịch sử và truyền thống hiếu học."
+                    buy2.text = "🏨 Khách sạn gần đây"
+                    buy2.setOnClickListener {
+                        val intent = Intent(this, TripActivity::class.java)
+                        intent.putExtra("place", "Văn Miếu")
+                        startActivity(intent)
+                    }
 
                     // Phố Cổ Hà Nội
                     img3.setImageResource(R.drawable.phoco)
@@ -207,6 +246,12 @@ class SuggestActivity : AppCompatActivity() {
                         "Phố Cổ Hà Nội nổi tiếng với khu vực '36 phố phường', nơi vẫn lưu giữ nét kiến trúc cổ kính và văn hóa truyền thống của người Hà Nội. " +
                                 "Du khách có thể dạo bộ, thưởng thức các món ăn đặc sản như phở, bún chả, cà phê trứng và mua sắm các mặt hàng thủ công mỹ nghệ. " +
                                 "Đây là địa điểm lý tưởng để khám phá nhịp sống và vẻ đẹp của Hà Nội xưa."
+                    buy3.text = "🏨 Khách sạn gần đây"
+                    buy3.setOnClickListener {
+                        val intent = Intent(this, TripActivity::class.java)
+                        intent.putExtra("place", "Phố Cổ")
+                        startActivity(intent)
+                    }
                 }
 
             }
