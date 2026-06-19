@@ -47,20 +47,18 @@ class OrderAdapter(
         holder.rating.text = "⭐ ${item.rating}"
         holder.txtCheckIn.text = "Check-in: ${item.checkIn}"
         holder.txtQuantity.text = item.quantity.toString()
-
         holder.price.text = formatVND(item.price * item.quantity)
 
-        // ================= STATUS TEXT =================
+        // ================= STATUS (FIXED) =================
         holder.txtStatus.text = when (item.status) {
-            "confirmed" -> "✅ Đã xác nhận vé"
-            "rejected" -> "❌ Hết vé"
-            else -> "⏳ Chờ duyệt"
+            "paid" -> "💰 Đã thanh toán"
+            "pending" -> "⏳ Chờ thanh toán"
+            else -> "⏳ Chờ thanh toán"
         }
 
         holder.txtStatus.setTextColor(
             when (item.status) {
-                "confirmed" -> Color.parseColor("#4CAF50")
-                "rejected" -> Color.RED
+                "paid" -> Color.parseColor("#4CAF50")
                 else -> Color.parseColor("#FF9800")
             }
         )
@@ -68,23 +66,20 @@ class OrderAdapter(
         // ================= BACKGROUND =================
         holder.itemView.setBackgroundColor(
             when (item.status) {
-                "confirmed" -> Color.parseColor("#D4F8D4")
-                "rejected" -> Color.parseColor("#FFD6D6")
+                "paid" -> Color.parseColor("#D4F8D4")
                 else -> Color.WHITE
             }
         )
 
-        // ================= BUTTON PLUS =================
+        // ================= PLUS =================
         holder.btnPlus.setOnClickListener {
-            val newQty = item.quantity + 1
-            updateQuantity(item, newQty)
+            updateQuantity(item, item.quantity + 1)
         }
 
-        // ================= BUTTON MINUS =================
+        // ================= MINUS =================
         holder.btnMinus.setOnClickListener {
             if (item.quantity > 1) {
-                val newQty = item.quantity - 1
-                updateQuantity(item, newQty)
+                updateQuantity(item, item.quantity - 1)
             }
         }
 
@@ -92,8 +87,8 @@ class OrderAdapter(
         holder.btnDelete.setOnClickListener {
 
             AlertDialog.Builder(holder.itemView.context)
-                .setTitle("Xóa vé")
-                .setMessage("Bạn có chắc muốn xóa không?")
+                .setTitle("Xóa đơn")
+                .setMessage("Bạn chắc chắn muốn xóa?")
                 .setPositiveButton("Xóa") { _, _ ->
                     deleteOrder(item)
                 }
@@ -106,27 +101,20 @@ class OrderAdapter(
         }
     }
 
-    // ================= UPDATE QUANTITY =================
+    // ================= UPDATE QUANTITY (FIXED orderId) =================
     private fun updateQuantity(order: Order, newQty: Double) {
 
         val db = FirebaseFirestore.getInstance()
         val newPrice = order.price * newQty
 
         db.collection("orders")
-            .whereEqualTo("hotelName", order.hotelName)
-            .get()
-            .addOnSuccessListener { docs ->
-                for (doc in docs) {
-                    db.collection("orders")
-                        .document(doc.id)
-                        .update(
-                            mapOf(
-                                "quantity" to newQty,
-                                "totalPrice" to newPrice
-                            )
-                        )
-                }
-            }
+            .document(order.orderId)
+            .update(
+                mapOf(
+                    "quantity" to newQty,
+                    "totalPrice" to newPrice
+                )
+            )
     }
 
     // ================= FORMAT MONEY =================
@@ -135,20 +123,12 @@ class OrderAdapter(
         return "💰 ${formatter.format(amount)} VND"
     }
 
-    // ================= DELETE =================
+    // ================= DELETE (FIXED orderId) =================
     private fun deleteOrder(order: Order) {
 
-        val db = FirebaseFirestore.getInstance()
-
-        db.collection("orders")
-            .whereEqualTo("hotelName", order.hotelName)
-            .get()
-            .addOnSuccessListener { docs ->
-                for (doc in docs) {
-                    db.collection("orders")
-                        .document(doc.id)
-                        .delete()
-                }
-            }
+        FirebaseFirestore.getInstance()
+            .collection("orders")
+            .document(order.orderId)
+            .delete()
     }
 }

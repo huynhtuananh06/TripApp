@@ -1,6 +1,7 @@
 package com.example.dulich
 
 data class Order(
+    val orderId: String = "",
     val hotelName: String = "",
     val price: Double = 0.0,
     val rating: String = "",

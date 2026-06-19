@@ -7,6 +7,7 @@ import android.os.Looper
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FirebaseFirestore
 
 class PaymentQRActivity : AppCompatActivity() {
 
@@ -18,12 +19,19 @@ class PaymentQRActivity : AppCompatActivity() {
         val imgQR = findViewById<ImageView>(R.id.imgQR)
 
         val txtHotelName = findViewById<TextView>(R.id.txtHotelName)
+        val orderId = intent.getStringExtra("orderId")
 
         val hotelName = intent.getStringExtra("hotelName")
         // UI
         txtHotelName.text = hotelName ?: "Không có tên khách sạn"
 
+        orderId?.let {
 
+            FirebaseFirestore.getInstance()
+                .collection("orders")
+                .document(it)
+                .update("status", "paid")
+        }
 
         imgQR.setImageResource(R.drawable.qr_momo_demo)
         txtStatus.text = "Đang chờ thanh toán..."
@@ -32,9 +40,17 @@ class PaymentQRActivity : AppCompatActivity() {
 
             txtStatus.text = "Thanh toán thành công ✓"
 
+            val orderId = intent.getStringExtra("orderId")
+
+            if (orderId != null) {
+                FirebaseFirestore.getInstance()
+                    .collection("orders")
+                    .document(orderId)
+                    .update("status", "paid")
+            }
+
             Handler(Looper.getMainLooper()).postDelayed({
-                val intent = Intent(this@PaymentQRActivity, SuccessActivity::class.java)
-                startActivity(intent)
+                startActivity(Intent(this, SuccessActivity::class.java))
                 finish()
             }, 1500)
 

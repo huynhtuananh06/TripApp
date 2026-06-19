@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+
 
 class PaymentMethodActivity : AppCompatActivity() {
 
@@ -28,8 +31,23 @@ class PaymentMethodActivity : AppCompatActivity() {
 
         btnMomoQR.setOnClickListener {
 
-            val intent = Intent(this, PaymentQRActivity::class.java)
+            val db = FirebaseFirestore.getInstance()
+            val orderRef = db.collection("orders").document()
+            val orderId = orderRef.id
 
+            val order = hashMapOf(
+                "orderId" to orderId,
+                "hotelName" to hotelName,
+                "price" to price,
+                "checkIn" to checkIn,
+                "status" to "pending",
+                "userId" to FirebaseAuth.getInstance().currentUser?.uid
+            )
+
+            orderRef.set(order)
+
+            val intent = Intent(this, PaymentQRActivity::class.java)
+            intent.putExtra("orderId", orderId)
             intent.putExtra("hotelName", hotelName)
             intent.putExtra("price", price)
 

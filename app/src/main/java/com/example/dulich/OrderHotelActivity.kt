@@ -1,5 +1,6 @@
 package com.example.dulich
 
+import android.R.attr.order
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -47,6 +48,7 @@ class OrderHotelActivity : AppCompatActivity() {
 
                         orderList.add(
                             Order(
+                                orderId = doc.id,
                                 hotelName = doc.getString("hotelName") ?: "",
                                 price = doc.getDouble("price") ?: 0.0,
                                 rating = doc.get("rating")?.toString() ?: "",
@@ -61,6 +63,8 @@ class OrderHotelActivity : AppCompatActivity() {
                     adapter.notifyDataSetChanged()
                 }
         }
+
+
 
 
 
