@@ -44,6 +44,8 @@
             android:name=".PaymentQRActivity"/>
         <activity
             android:name=".SuccessActivity"/>
+        <activity
+            android:name=".ManageHotelActivity"/>
 
 
         <activity

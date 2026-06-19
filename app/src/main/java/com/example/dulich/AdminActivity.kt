@@ -21,6 +21,8 @@ class AdminActivity : AppCompatActivity() {
         val cardPending = findViewById<CardView>(R.id.cardPending)
         // CARD USERS
         val cardUsers = findViewById<CardView?>(R.id.cardUsers)
+        // CARD HOTEL
+        val cardOrders = findViewById<CardView>(R.id.cardOrders)
 
         val btnLogout = findViewById<Button>(R.id.btnLogout)
         btnLogout.setOnClickListener {
@@ -50,5 +52,10 @@ class AdminActivity : AppCompatActivity() {
             val intent = Intent(this@AdminActivity, UsersActivity::class.java)
             startActivity(intent)
         })
+        cardOrders.setOnClickListener {
+            startActivity(
+                Intent(this, ManageHotelActivity::class.java)
+            )
+        }
     }
 }
