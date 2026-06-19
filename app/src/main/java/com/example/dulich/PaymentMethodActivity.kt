@@ -26,7 +26,26 @@ class PaymentMethodActivity : AppCompatActivity() {
         val checkIn = intent.getStringExtra("checkIn")
 
         btnCash.setOnClickListener {
-            Toast.makeText(this, "Chọn tiền mặt", Toast.LENGTH_SHORT).show()
+
+            androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("🎉 Đặt phòng thành công")
+                .setMessage(
+                    "Cảm ơn bạn đã lựa chọn dịch vụ của chúng tôi.\n\n" +
+                            "✔ Đơn đặt phòng đã được ghi nhận.\n" +
+                            "💵 Hình thức thanh toán: Tiền mặt.\n" +
+                            "⏳ Vui lòng thanh toán khi nhận phòng.\n\n" +
+                            "Chúng tôi sẽ sớm xác nhận tình trạng phòng cho bạn."
+                )
+                .setCancelable(false)
+                .setPositiveButton("OK") { _, _ ->
+
+                    startActivity(
+                        Intent(this, SuccessActivity::class.java)
+                    )
+                    finish()
+
+                }
+                .show()
         }
 
         btnMomoQR.setOnClickListener {
