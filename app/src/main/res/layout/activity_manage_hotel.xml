@@ -36,60 +36,24 @@
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="20dp"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <!-- Button -->
-    <LinearLayout
-        android:id="@+id/layoutButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="25dp"
-        android:layout_marginHorizontal="20dp"
-        app:layout_constraintTop_toBottomOf="@id/txtTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <Button
-            android:id="@+id/btnAddHotel"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="➕ Thêm Hotel"
-            android:textStyle="bold"
-            android:backgroundTint="#43A047"
-            android:textColor="#FFFFFF"/>
-
-        <Space
-            android:layout_width="16dp"
-            android:layout_height="1dp"/>
-
-        <Button
-            android:id="@+id/btnDeleteHotel"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="🗑 Xóa Hotel"
-            android:textStyle="bold"
-            android:backgroundTint="#E53935"
-            android:textColor="#FFFFFF"/>
-
-    </LinearLayout>
-
-    <!-- Khung nội dung -->
+    <!-- Card Content -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:cardBackgroundColor="#F7F7F7"
         app:cardCornerRadius="18dp"
         app:cardElevation="8dp"
-        app:cardBackgroundColor="#F7F7F7"
-        app:layout_constraintTop_toBottomOf="@id/layoutButton"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
         app:layout_constraintBottom_toTopOf="@id/btnBack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -104,25 +68,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Danh sách khách sạn"
+                android:textStyle="bold"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textColor="#000000"/>
 
-            <!-- Sau này RecyclerView sẽ đặt ở đây -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerHotel"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"/>
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <!-- Back -->
+    <!-- Floating Add Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddHotel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="28dp"
+        android:contentDescription="Add Hotel"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="#43A047"
+        app:tint="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@id/btnBack"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Back Button -->
     <Button
         android:id="@+id/btnBack"
         android:layout_width="0dp"
         android:layout_height="52dp"
+        android:layout_margin="20dp"
         android:text="⬅ Quay lại Dashboard"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
         android:backgroundTint="#1976D2"
-        android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
