@@ -40,6 +40,10 @@
             android:name=".HotelDetailActivity"/>
         <activity
             android:name=".PaymentMethodActivity"/>
+        <activity
+            android:name=".PaymentQRActivity"/>
+        <activity
+            android:name=".SuccessActivity"/>
 
 
         <activity

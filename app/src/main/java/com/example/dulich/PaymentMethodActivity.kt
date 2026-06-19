@@ -17,6 +17,7 @@ class PaymentMethodActivity : AppCompatActivity() {
         val btnMomoQR = findViewById<LinearLayout>(R.id.btnMomoQR)
         val btnMomoCard = findViewById<LinearLayout>(R.id.btnMomoCard)
 
+
         val hotelName = intent.getStringExtra("hotelName")
         val price = intent.getDoubleExtra("price", 0.0)
         val checkIn = intent.getStringExtra("checkIn")
@@ -26,9 +27,14 @@ class PaymentMethodActivity : AppCompatActivity() {
         }
 
         btnMomoQR.setOnClickListener {
-            Toast.makeText(this, "Chọn MoMo QR", Toast.LENGTH_SHORT).show()
-        }
 
+            val intent = Intent(this, PaymentQRActivity::class.java)
+
+            intent.putExtra("hotelName", hotelName)
+            intent.putExtra("price", price)
+
+            startActivity(intent)
+        }
         btnMomoCard.setOnClickListener {
             Toast.makeText(this, "Chọn Card MoMo", Toast.LENGTH_SHORT).show()
         }

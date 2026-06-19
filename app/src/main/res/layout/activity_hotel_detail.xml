@@ -20,15 +20,14 @@
     <!-- Nút quay lại -->
     <ImageButton
         android:id="@+id/btnBack"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_margin="16dp"
-        android:background="#66000000"
-        android:padding="8dp"
-        android:src="@drawable/ic_homee"
-        app:layout_constraintTop_toTopOf="@id/imgHotel"
-        app:layout_constraintStart_toStartOf="@id/imgHotel"/>
-
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back"
+        android:padding="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
     <!-- Nội dung -->
     <ScrollView
         android:layout_width="0dp"
@@ -246,32 +245,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"/>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="24dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="6dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="18dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Thời gian nhận phòng"
-                        android:textStyle="bold"
-                        android:textSize="20sp"/>
-
-
 
                 </LinearLayout>
 
