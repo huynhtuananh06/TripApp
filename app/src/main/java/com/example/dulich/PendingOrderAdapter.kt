@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 class PendingOrderAdapter(
     private val list: MutableList<AdminOrder>,
     private val onConfirm: (AdminOrder) -> Unit,
-    private val onReject: (AdminOrder) -> Unit
+    private val onReject: (AdminOrder) -> Unit,
+    private val onDelete: (AdminOrder) -> Unit
 ) : RecyclerView.Adapter<PendingOrderAdapter.VH>() {
 
     inner class VH(view: View) : RecyclerView.ViewHolder(view) {
@@ -21,6 +22,7 @@ class PendingOrderAdapter(
         val checkIn = view.findViewById<TextView>(R.id.txtCheckIn)
         val btnConfirm = view.findViewById<Button>(R.id.btnConfirm)
         val btnReject = view.findViewById<Button>(R.id.btnReject)
+        val btnDelete = view.findViewById<Button>(R.id.btnDelete)
         val txtStatus = view.findViewById<TextView>(R.id.txtStatus)
             ?: throw RuntimeException("txtStatus not found in item_pending_order.xml")
     }
@@ -73,6 +75,17 @@ class PendingOrderAdapter(
                 onConfirm(list[pos])
             }
         }
+        holder.btnDelete.setOnClickListener {
+            onDelete(item)
+        }
+        holder.btnDelete.visibility =
+            if (
+                item.bookingStatus == "Đã từ chối" ||
+                item.bookingStatus == "Đã hết hạn"
+            )
+                View.VISIBLE
+            else
+                View.GONE
 
         holder.btnReject.setOnClickListener {
             onReject(item)

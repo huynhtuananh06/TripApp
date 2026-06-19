@@ -1,7 +1,8 @@
 package com.example.dulich
 
 import android.os.Bundle
-import android.view.View
+import java.text.SimpleDateFormat
+import java.util.Locale
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +31,9 @@ class PendingOrdersActivity : AppCompatActivity() {
             },
             onReject = { order ->
                 updateStatus(order.id, "Đã từ chối")
+            },
+            onDelete = {
+                deleteOrder(it.id)
             }
         )
 
@@ -51,15 +55,26 @@ class PendingOrdersActivity : AppCompatActivity() {
                 list.clear()
 
                 for (doc in value) {
+
+                    val checkIn = doc.getString("checkIn") ?: ""
+                    val bookingStatus = doc.getString("bookingStatus") ?: "Chờ xác nhận"
+
+                    // Kiểm tra hết hạn
+                    checkExpiredOrder(
+                        doc.id,
+                        checkIn,
+                        bookingStatus
+                    )
+
                     list.add(
                         AdminOrder(
                             id = doc.id,
                             userEmail = doc.getString("userEmail") ?: "",
                             hotelName = doc.getString("hotelName") ?: "",
                             price = doc.getDouble("price") ?: 0.0,
-                            checkIn = doc.getString("checkIn") ?: "",
+                            checkIn = checkIn,
                             status = doc.getString("status") ?: "pending",
-                            bookingStatus = doc.getString("bookingStatus") ?: "Chờ xác nhận"
+                            bookingStatus = bookingStatus
                         )
                     )
                 }
@@ -67,10 +82,47 @@ class PendingOrdersActivity : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
             }
     }
+    private fun deleteOrder(id:String){
+
+        db.collection("orders")
+            .document(id)
+            .delete()
+    }
 
     private fun updateStatus(id: String, bookingStatus: String) {
         db.collection("orders")
             .document(id)
             .update("bookingStatus", bookingStatus)
+    }
+    private fun checkExpiredOrder(
+        orderId: String,
+        checkIn: String,
+        bookingStatus: String
+    ) {
+
+        if (bookingStatus != "Đã xác nhận") return
+
+        try {
+
+            val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+
+            val checkInDate = sdf.parse(checkIn) ?: return
+
+            val expireTime = checkInDate.time + 24 * 60 * 60 * 1000
+
+            if (System.currentTimeMillis() >= expireTime) {
+
+                db.collection("orders")
+                    .document(orderId)
+                    .update(
+                        mapOf(
+                            "bookingStatus" to "Đã hết hạn"
+                        )
+                    )
+            }
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
