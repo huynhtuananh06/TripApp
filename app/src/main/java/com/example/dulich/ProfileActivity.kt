@@ -1,7 +1,6 @@
 package com.example.dulich
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -11,11 +10,25 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import android.net.Uri
+import androidx.activity.result.contract.ActivityResultContracts
 
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+    private lateinit var imgAvatar: ImageView
+    private var avatarUri: Uri? = null
+
+    private val pickImageLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+
+            if (uri != null) {
+                avatarUri = uri
+                imgAvatar.setImageURI(uri)
+            }
+
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility =
@@ -44,16 +57,15 @@ class ProfileActivity : AppCompatActivity() {
             findViewById<TextView>(
                 R.id.btnLogout
             )
-
+        imgAvatar = findViewById(R.id.imgAvatar)
         val btnEditAvatar =
-            findViewById<ImageView>(
-                R.id.btnEditAvatar
-            )
+            findViewById<ImageView>(R.id.btnEditAvatar)
 
         val btnAllOrders =
             findViewById<TextView>(
                 R.id.btnAllOrders
             )
+
 
         // ===== USER INFO =====
 
@@ -114,12 +126,43 @@ class ProfileActivity : AppCompatActivity() {
 
         btnEditAvatar.setOnClickListener {
 
-            Toast.makeText(
-                this,
-                "Đang phát triển",
-                Toast.LENGTH_SHORT
-            ).show()
+            val items = arrayOf(
+                "📷 Đổi ảnh đại diện",
+                "🗑 Xóa ảnh đại diện",
+                "❌ Đóng"
+            )
 
+            androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Ảnh đại diện")
+                .setItems(items) { dialog, which ->
+
+                    when (which) {
+
+                        // Chọn ảnh
+                        0 -> {
+                            pickImageLauncher.launch("image/*")
+                        }
+
+                        // Xóa ảnh
+                        1 -> {
+
+                            avatarUri = null
+
+                            imgAvatar.setImageResource(R.drawable.ic_user)
+
+                            Toast.makeText(
+                                this,
+                                "Đã xóa ảnh đại diện",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        // Đóng
+                        2 -> dialog.dismiss()
+                    }
+
+                }
+                .show()
         }
         val bottomNav =
             findViewById<BottomNavigationView>(

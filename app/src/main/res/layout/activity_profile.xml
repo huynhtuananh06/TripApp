@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,76 +12,94 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <!-- CARD THÔNG TIN USER -->
+        <!-- ================= USER CARD ================= -->
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
+            app:cardCornerRadius="22dp"
             app:cardElevation="8dp"
             app:cardBackgroundColor="#EEFFFFFF">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="183dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <!-- LOGOUT -->
+                <!-- Logout -->
+
                 <TextView
                     android:id="@+id/btnLogout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:text="🚪 Đăng xuất"
+                    android:textStyle="bold"
                     android:textColor="#E53935"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"/>
 
-                <!-- AVATAR -->
+                <!-- Avatar -->
+
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp">
 
                     <ImageView
                         android:id="@+id/imgAvatar"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:src="@drawable/ic_user" />
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/ic_user"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/circle_bg"
+                        android:padding="4dp"/>
 
                     <ImageView
                         android:id="@+id/btnEditAvatar"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="bottom|end"
-                        android:src="@android:drawable/ic_input_add" />
+                        android:background="@drawable/ic_ground"
+                        android:padding="5dp"
+                        android:src="@android:drawable/ic_menu_camera"/>
+
                 </FrameLayout>
 
                 <!-- NAME -->
+
                 <TextView
                     android:id="@+id/txtName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:text="Người dùng"
                     android:textColor="#222222"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textSize="22sp"/>
 
                 <!-- EMAIL -->
+
                 <TextView
                     android:id="@+id/txtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:gravity="center"
+                    android:layout_marginTop="6dp"
                     android:textColor="#666666"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"/>
+
+
 
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- ĐƠN HÀNG -->
+        <!-- ================= ĐƠN HÀNG ================= -->
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,30 +116,32 @@
                 android:text="📦 Tất cả đơn hàng"
                 android:textColor="#2D3748"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- DANH SÁCH ĐƠN -->
+        <!-- ================= DANH SÁCH ================= -->
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerBookedTours"
             android:layout_width="match_parent"
-            android:layout_height="255dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="0dp"
             android:layout_weight="1"
+            android:layout_marginTop="12dp"
             android:clipToPadding="false"
-            android:paddingBottom="80dp" />
+            android:paddingBottom="80dp"/>
 
     </LinearLayout>
 
-    <!-- MENU -->
+    <!-- ================= MENU ================= -->
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_gravity="bottom"
         android:background="#FFFFFF"
-        android:elevation="12dp"
+        android:elevation="10dp"
         app:itemIconTint="@color/nav_color"
         app:itemTextColor="@color/nav_color"
         app:menu="@menu/bottom_menu"/>
