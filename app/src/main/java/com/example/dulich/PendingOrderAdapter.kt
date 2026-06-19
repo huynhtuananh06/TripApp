@@ -21,6 +21,8 @@ class PendingOrderAdapter(
         val checkIn = view.findViewById<TextView>(R.id.txtCheckIn)
         val btnConfirm = view.findViewById<Button>(R.id.btnConfirm)
         val btnReject = view.findViewById<Button>(R.id.btnReject)
+        val txtStatus = view.findViewById<TextView>(R.id.txtStatus)
+            ?: throw RuntimeException("txtStatus not found in item_pending_order.xml")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -39,6 +41,18 @@ class PendingOrderAdapter(
         holder.hotel.text = item.hotelName
         holder.price.text = "Giá: ${item.price}"
         holder.checkIn.text = "Check-in: ${item.checkIn}"
+        holder.txtStatus.text = when (item.status) {
+
+            "pending" -> "⏳ Chờ duyệt"
+
+            "paid" -> "💰 Đã thanh toán"
+
+            "confirmed" -> "✅ Đã xác nhận"
+
+            "rejected" -> "❌ Từ chối"
+
+            else -> "❓ Không rõ"
+        }
 
         // 🎨 màu theo status
         when (item.status) {
@@ -54,7 +68,10 @@ class PendingOrderAdapter(
 
         // ✅ CHỈ GIỮ 1 CLICK LISTENER (QUAN TRỌNG)
         holder.btnConfirm.setOnClickListener {
-            onConfirm(item)
+            val pos = holder.adapterPosition
+            if (pos != RecyclerView.NO_POSITION) {
+                onConfirm(list[pos])
+            }
         }
 
         holder.btnReject.setOnClickListener {

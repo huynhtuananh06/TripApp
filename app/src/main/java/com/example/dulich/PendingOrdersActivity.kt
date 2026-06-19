@@ -44,7 +44,6 @@ class PendingOrdersActivity : AppCompatActivity() {
 
     private fun loadOrders() {
         db.collection("orders")
-            .whereEqualTo("status", "pending")
             .addSnapshotListener { value, error ->
 
                 if (error != null || value == null) return@addSnapshotListener
