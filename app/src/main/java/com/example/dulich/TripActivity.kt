@@ -134,18 +134,23 @@ class TripActivity : AppCompatActivity() {
                                     "rating" to item.rating,
                                     "status" to "pending",
                                     "quantity" to 1,
-                                    "checkIn" to checkInDateTime   // 👈 thêm ngày giờ
+                                    "checkIn" to checkInDateTime,// 👈 thêm ngày giờ
+                                    "bookingStatus" to "Chờ xác nhận"
                                 )
 
 
                                 db.collection("orders")
                                     .add(order)
-                                    .addOnSuccessListener {
-                                        Toast.makeText(this, "Đặt thành công", Toast.LENGTH_SHORT).show()
-                                    }
-                                    .addOnFailureListener {
-                                        Toast.makeText(this, "Lỗi: ${it.message}", Toast.LENGTH_LONG).show()
-                                        Log.e("FIREBASE", it.message.toString())
+                                    .addOnSuccessListener { document ->
+
+                                        val intent = Intent(this, PaymentMethodActivity::class.java)
+
+                                        intent.putExtra("orderId", document.id)
+                                        intent.putExtra("hotelName", item.name)
+                                        intent.putExtra("price", item.price)
+                                        intent.putExtra("checkIn", checkInDateTime)
+
+                                        startActivity(intent)
                                     }
 
                             },

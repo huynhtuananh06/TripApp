@@ -26,10 +26,10 @@ class PendingOrdersActivity : AppCompatActivity() {
         adapter = PendingOrderAdapter(
             list,
             onConfirm = { order ->
-                updateStatus(order.id, "confirmed")
+                updateStatus(order.id, "Đã xác nhận")
             },
             onReject = { order ->
-                updateStatus(order.id, "rejected")
+                updateStatus(order.id, "Đã từ chối")
             }
         )
 
@@ -58,7 +58,8 @@ class PendingOrdersActivity : AppCompatActivity() {
                             hotelName = doc.getString("hotelName") ?: "",
                             price = doc.getDouble("price") ?: 0.0,
                             checkIn = doc.getString("checkIn") ?: "",
-                            status = doc.getString("status") ?: "pending"
+                            status = doc.getString("status") ?: "pending",
+                            bookingStatus = doc.getString("bookingStatus") ?: "Chờ xác nhận"
                         )
                     )
                 }
@@ -67,9 +68,9 @@ class PendingOrdersActivity : AppCompatActivity() {
             }
     }
 
-    private fun updateStatus(id: String, status: String) {
+    private fun updateStatus(id: String, bookingStatus: String) {
         db.collection("orders")
             .document(id)
-            .update("status", status)
+            .update("bookingStatus", bookingStatus)
     }
 }

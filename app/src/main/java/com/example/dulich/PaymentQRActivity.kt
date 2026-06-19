@@ -25,13 +25,7 @@ class PaymentQRActivity : AppCompatActivity() {
         // UI
         txtHotelName.text = hotelName ?: "Không có tên khách sạn"
 
-        orderId?.let {
 
-            FirebaseFirestore.getInstance()
-                .collection("orders")
-                .document(it)
-                .update("status", "paid")
-        }
 
         imgQR.setImageResource(R.drawable.qr_momo_demo)
         txtStatus.text = "Đang chờ thanh toán..."
@@ -45,8 +39,14 @@ class PaymentQRActivity : AppCompatActivity() {
             if (orderId != null) {
                 FirebaseFirestore.getInstance()
                     .collection("orders")
-                    .document(orderId)
-                    .update("status", "paid")
+                    .document(orderId!!)
+                    .update(
+                        mapOf(
+                            "status" to "paid",
+                            "bookingStatus" to "Chờ xác nhận"
+                        )
+                    )
+
             }
 
             Handler(Looper.getMainLooper()).postDelayed({

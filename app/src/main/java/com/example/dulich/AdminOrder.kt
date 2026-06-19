@@ -6,5 +6,6 @@ data class AdminOrder(
     val hotelName: String = "",
     val price: Double = 0.0,
     val checkIn: String = "",
-    val status: String = "pending"
+    val status: String = "pending",
+    val bookingStatus: String = "Chờ xác nhận"
 )

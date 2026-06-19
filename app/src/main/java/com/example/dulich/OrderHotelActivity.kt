@@ -45,7 +45,6 @@ class OrderHotelActivity : AppCompatActivity() {
                     orderList.clear()
 
                     for (doc in value) {
-
                         orderList.add(
                             Order(
                                 orderId = doc.id,
@@ -54,8 +53,9 @@ class OrderHotelActivity : AppCompatActivity() {
                                 rating = doc.get("rating")?.toString() ?: "",
                                 quantity = doc.getDouble("quantity") ?: 1.0,
                                 checkIn = doc.getString("checkIn") ?: "",
-                                status = doc.getString("status") ?: "pending"
 
+                                status = doc.getString("status") ?: "pending",
+                                bookingStatus = doc.getString("bookingStatus") ?: "Chờ xác nhận"
                             )
                         )
                     }

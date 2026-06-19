@@ -31,20 +31,8 @@ class PaymentMethodActivity : AppCompatActivity() {
 
         btnMomoQR.setOnClickListener {
 
-            val db = FirebaseFirestore.getInstance()
-            val orderRef = db.collection("orders").document()
-            val orderId = orderRef.id
+            val orderId = intent.getStringExtra("orderId")
 
-            val order = hashMapOf(
-                "orderId" to orderId,
-                "hotelName" to hotelName,
-                "price" to price,
-                "checkIn" to checkIn,
-                "status" to "pending",
-                "userId" to FirebaseAuth.getInstance().currentUser?.uid
-            )
-
-            orderRef.set(order)
 
             val intent = Intent(this, PaymentQRActivity::class.java)
             intent.putExtra("orderId", orderId)

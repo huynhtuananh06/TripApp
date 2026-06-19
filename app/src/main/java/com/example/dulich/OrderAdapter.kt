@@ -50,11 +50,9 @@ class OrderAdapter(
         holder.price.text = formatVND(item.price * item.quantity)
 
         // ================= STATUS (FIXED) =================
-        holder.txtStatus.text = when (item.status) {
-            "paid" -> "💰 Đã thanh toán"
-            "pending" -> "⏳ Chờ thanh toán"
-            else -> "⏳ Chờ thanh toán"
-        }
+        holder.txtStatus.text =
+            "💳 Thanh toán: ${if (item.status == "paid") "Đã thanh toán" else "Chờ thanh toán"}\n" +
+                    "📋 Đặt phòng: ${item.bookingStatus}"
 
         holder.txtStatus.setTextColor(
             when (item.status) {
