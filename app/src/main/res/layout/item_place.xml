@@ -34,6 +34,15 @@
             android:layout_height="wrap_content"
             android:text="Việt Nam"
             android:padding="8dp"/>
+        <Button
+            android:id="@+id/btnMore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Tìm hiểu thêm"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#2196F3"/>
 
     </LinearLayout>
 

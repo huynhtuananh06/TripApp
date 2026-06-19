@@ -19,6 +19,7 @@ class SuggestActivity : AppCompatActivity() {
 
         val region = findViewById<Spinner>(R.id.spinnerRegion)
         val place = findViewById<Spinner>(R.id.spinnerPlace)
+        val placeName = intent.getStringExtra("placeName") ?: ""
         val btn = findViewById<Button>(R.id.btnSuggest)
 
         val intro = findViewById<TextView>(R.id.txtIntro)
@@ -79,15 +80,63 @@ class SuggestActivity : AppCompatActivity() {
         )
 
         val map = mapOf( "Miền Bắc" to listOf( "Hà Nội", "Sa Pa", "Vịnh Hạ Long", "Ninh Bình", "Mộc Châu", "Đảo Cát Bà", "Mai Châu" ), "Miền Trung" to listOf( "Đà Nẵng", "Huế", "Hội An", "Nha Trang", "Đà Lạt", "Mũi Né", "Quy Nhơn", "Đảo Lý Sơn" ), "Miền Nam" to listOf( "Phú Quốc", "Vũng Tàu", "Cần Thơ", "TP Hồ Chí Minh", "Cà Mau", "Côn Đảo", "Châu Đốc" ) )
+        if (placeName.isNotEmpty()) {
 
+            when (placeName) {
+
+                "Hà Nội" -> region.setSelection(0)
+                "Sa Pa" -> region.setSelection(0)
+                "Vịnh Hạ Long" -> region.setSelection(0)
+                "Ninh Bình" -> region.setSelection(0)
+                "Mộc Châu" -> region.setSelection(0)
+                "Đảo Cát Bà" -> region.setSelection(0)
+                "Mai Châu" -> region.setSelection(0)
+
+                "Đà Nẵng" -> region.setSelection(1)
+                "Huế" -> region.setSelection(1)
+                "Hội An" -> region.setSelection(1)
+                "Nha Trang" -> region.setSelection(1)
+                "Đà Lạt" -> region.setSelection(1)
+                "Mũi Né" -> region.setSelection(1)
+                "Quy Nhơn" -> region.setSelection(1)
+                "Đảo Lý Sơn" -> region.setSelection(1)
+
+                "Phú Quốc" -> region.setSelection(2)
+                "Vũng Tàu" -> region.setSelection(2)
+                "Cần Thơ" -> region.setSelection(2)
+                "TP Hồ Chí Minh" -> region.setSelection(2)
+                "Cà Mau" -> region.setSelection(2)
+                "Côn Đảo" -> region.setSelection(2)
+                "Châu Đốc" -> region.setSelection(2)
+            }
+        }
         region.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
                 val selected = regionList[position]
+
+                val listPlace = map[selected] ?: emptyList()
+
                 place.adapter = ArrayAdapter(
                     this@SuggestActivity,
                     android.R.layout.simple_spinner_dropdown_item,
-                    map[selected] ?: emptyList()
+                    listPlace
                 )
+
+                if (placeName.isNotEmpty()) {
+
+                    val index = listPlace.indexOf(placeName)
+
+                    if (index != -1) {
+                        place.setSelection(index)
+                        btn.performClick()
+                    }
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -97,7 +146,13 @@ class SuggestActivity : AppCompatActivity() {
 
             if (place.selectedItem == null) return@setOnClickListener
 
-            when (place.selectedItem.toString()) {
+            val selectedPlace =
+                if (placeName.isNotEmpty())
+                    placeName
+                else
+                    place.selectedItem.toString()
+
+            when (selectedPlace) {
 
                 "Đà Nẵng" -> {
                     showAll()

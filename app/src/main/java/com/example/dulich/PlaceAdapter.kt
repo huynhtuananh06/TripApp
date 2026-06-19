@@ -1,8 +1,10 @@
 package com.example.dulich
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +32,7 @@ class PlaceAdapter(
             itemView.findViewById<TextView>(
                 R.id.txtLocation
             )
+        val btnMore = itemView.findViewById<Button>(R.id.btnMore)
 
     }
 
@@ -38,34 +41,39 @@ class PlaceAdapter(
         viewType: Int
     ): ViewHolder {
 
-        val view =
-            LayoutInflater.from(
-                parent.context
-            ).inflate(
-                R.layout.item_place,
-                parent,
-                false
-            )
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_place, parent, false)
 
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(
-        holder: ViewHolder,
-        position: Int
-    ) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val place = list[position]
 
-        holder.image.setImageResource(
-            place.image
-        )
+        holder.image.setImageResource(place.image)
+        holder.name.text = place.name
+        holder.location.text = place.location
 
-        holder.name.text =
-            place.name
+        holder.btnMore.setOnClickListener {
 
-        holder.location.text =
-            place.location
+            val intent = Intent(holder.itemView.context, SuggestActivity::class.java)
+
+            intent.putExtra("placeName", place.name)
+
+            holder.itemView.context.startActivity(intent)
+        }
+        holder.itemView.setOnClickListener {
+
+            val intent = Intent(
+                holder.itemView.context,
+                SuggestActivity::class.java
+            )
+
+            intent.putExtra("placeName", place.name)
+
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
